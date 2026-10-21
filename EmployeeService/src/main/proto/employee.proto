@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.employee.grpc";
+option java_outer_classname = "EmployeeProto";
+
+service EmployeeService {
+
+    rpc createEmployee(CreateEmployeeRequest)
+        returns (EmployeeResponse);
+
+    rpc getEmployee(GetEmployeeRequest)
+        returns (EmployeeResponse);
+
+    rpc getAllEmployees(GetAllEmployeesRequest)
+        returns (EmployeeListResponse);
+
+    rpc updateEmployee(UpdateEmployeeRequest)
+        returns (EmployeeResponse);
+
+    rpc deleteEmployee(DeleteEmployeeRequest)
+        returns (DeleteEmployeeResponse);
+}
+
+message Employee {
+
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+    string department = 4;
+    double salary = 5;
+}
+
+message CreateEmployeeRequest {
+
+    string name = 1;
+    string email = 2;
+    string department = 3;
+    double salary = 4;
+}
+
+message GetEmployeeRequest {
+
+    int64 id = 1;
+}
+
+message GetAllEmployeesRequest {
+}
+
+message UpdateEmployeeRequest {
+
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+    string department = 4;
+    double salary = 5;
+}
+
+message DeleteEmployeeRequest {
+
+    int64 id = 1;
+}
+
+message EmployeeResponse {
+
+    Employee employee = 1;
+}
+
+message EmployeeListResponse {
+
+    repeated Employee employees = 1;
+}
+
+message DeleteEmployeeResponse {
+
+    bool success = 1;
+    string message = 2;
+}
